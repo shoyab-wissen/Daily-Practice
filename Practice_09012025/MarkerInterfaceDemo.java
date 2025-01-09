@@ -16,8 +16,10 @@ class Geek extends Student implements MarkerInterface {
     }
 }
 
-public class MarkerInterfaceDemo {
+public class MarkerInterfaceDemo implements MarkerInterface {
     public static void main(String[] args) {
         Geek g = new Geek();
+        Student s1 = new Student();
+        s1.doSomething();
     }
 }
