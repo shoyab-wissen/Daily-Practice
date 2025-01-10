@@ -3,7 +3,7 @@ package PersonalPractice.com.example.client;
 import PersonalPractice.com.example.implementation.PrintInformation;
 import PersonalPractice.com.example.interfaces.InformationInterface;
 
-class InfomrationPrint extends PrintInformation implements InformationInterface {
+class InfomrationPrint extends PrintInformation {
     InfomrationPrint() {
         try {
             this.printClassInformation();
@@ -13,7 +13,7 @@ class InfomrationPrint extends PrintInformation implements InformationInterface 
     }
 }
 
-public class ClientApplication implements InformationInterface {
+public class ClientApplication {
     public static void main(String[] args) {
         InfomrationPrint ip = new InfomrationPrint();
     }

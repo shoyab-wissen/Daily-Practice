@@ -10,6 +10,7 @@ class Student implements Cloneable {
     void display() {
         System.out.println("Name: " + this.name);
         System.out.println("Age: " + this.age);
+
     }
 
     public Student clone() {
@@ -20,6 +21,11 @@ class Student implements Cloneable {
         }
         return null;
     }
+}
+
+abstract class demo {
+    final void display() {
+    };
 }
 
 class CloneDemo {

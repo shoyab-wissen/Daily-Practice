@@ -5,6 +5,7 @@ import PersonalPractice.com.example.interfaces.InformationInterface;
 
 public class PrintInformation {
     public final void printClassInformation() throws CannotPrintInformationException {
+
         if (this instanceof InformationInterface) {
             System.out.println("Class Name: " + this.getClass());
             System.out.println("Hash Code: " + this.hashCode());
