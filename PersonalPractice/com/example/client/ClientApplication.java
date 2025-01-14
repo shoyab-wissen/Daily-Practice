@@ -3,7 +3,7 @@ package PersonalPractice.com.example.client;
 import PersonalPractice.com.example.implementation.PrintInformation;
 import PersonalPractice.com.example.interfaces.InformationInterface;
 
-class InfomrationPrint extends PrintInformation {
+class InfomrationPrint extends PrintInformation implements InformationInterface {
     InfomrationPrint() {
         try {
             this.printClassInformation();
