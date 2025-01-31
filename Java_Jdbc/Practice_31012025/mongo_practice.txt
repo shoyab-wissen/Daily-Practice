@@ -1,0 +1,751 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\Users\Wissen\Desktop\Project\Mongo Installation\mongosh-2.3.8-win32-x64\bin> mongosh
+mongosh : The term 'mongosh' is not recognized as the name of a cmdlet, function, script file, or operable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ mongosh
++ ~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (mongosh:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+
+Suggestion [3,General]: The command mongosh was not found, but does exist in the current location. Windows PowerShell does not load commands from the current location by default. If you trust this command, instead type: ".\mongosh". See "get-help about_Command_Precedence" for more details.
+PS C:\Users\Wissen\Desktop\Project\Mongo Installation\mongosh-2.3.8-win32-x64\bin> .\mongosh.exe
+Current Mongosh Log ID: 679c8fb8546ae51ff4cb0ce1
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.8
+Using MongoDB:          8.0.4
+Using Mongosh:          2.3.8
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+
+To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+You can opt-out by running the disableTelemetry() command.
+
+------
+   The server generated these startup warnings when booting
+   2025-01-31T14:23:21.218+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+   2025-01-31T14:23:21.218+05:30: This server is bound to localhost. Remote systems will be unable to connect to this server. Start the server with --bind_ip <address> to specify which IP addresses it should serve responses from, or with --bind_ip_all to bind to all interfaces. If this behavior is desired, start the server with --bind_ip 127.0.0.1 to disable this warning
+------
+
+test> show dbs
+admin   40.00 KiB
+config  60.00 KiB
+local   40.00 KiB
+test> use local
+switched to db local
+local> use demodb //if it is avl it will switch not it will create and switch
+switched to db demodb
+demodb> show dbs
+admin   40.00 KiB
+config  60.00 KiB
+local   40.00 KiB
+demodb> // its not showing the database as there is no collections in it
+
+demodb> db
+demodb
+demodb> show collections //lists all the collections in the currect database
+
+demodb> db.Employee.insert({'name': 'Shoyab', 'age': 22})
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('679c93b6546ae51ff4cb0ce2') }
+}
+demodb> // this will create a collection if it does not exist but insert is deprecated so use insertOne or insertMany
+
+demodb> db.Employee.insertOne({'name': 'Sanjana', 'age', 22})
+Uncaught:
+SyntaxError: Unexpected token (1:47)
+
+> 1 | db.Employee.insertOne({'name': 'Sanjana', 'age', 22})
+    |                                                ^
+  2 |
+
+demodb> db.Employee.insertOne({'name': 'Sanjana', 'age': 22})
+{
+  acknowledged: true,
+  insertedId: ObjectId('679c93f5546ae51ff4cb0ce3')
+}
+demodb> db.Employee.find() //returns all the records
+[
+  {
+    _id: ObjectId('679c93b6546ae51ff4cb0ce2'),
+    name: 'Shoyab',
+    age: 22
+  },
+  {
+    _id: ObjectId('679c93f5546ae51ff4cb0ce3'),
+    name: 'Sanjana',
+    age: 22
+  }
+]
+demodb> db.Employee.insertOne({'name': 'Kaif', 'age': 21, 'salary': 100, 'designation': 'clerk'})
+{
+  acknowledged: true,
+  insertedId: ObjectId('679c9459546ae51ff4cb0ce4')
+}
+demodb> db.Employee.insertOne({'name': 'Bhavandar Bihari', 'age': 32, 'salary': 1000, 'designation': 'tester'})
+{
+  acknowledged: true,
+  insertedId: ObjectId('679c9490546ae51ff4cb0ce5')
+}
+demodb> db.insertMany({
+...
+demodb> db.insertMany([
+... {'name': 'Bhavandar Bihari', 'age': 32, 'salary': 1000, 'designation': 'tester'},
+... {'name': 'Bhavandar Bihari', 'age': 32, 'salary': 1000, 'designation': 'tester'},
+... {'name': 'Bhavandar Bihari', 'age': 32, 'salary': 1000, 'designation': 'tester'},
+... {'name': 'Bhavandar Bihari', 'age': 32, 'salary': 1000, 'designation': 'tester'}
+demodb> db.insert<any([
+... {'name': 'Amar', 'age': 40, 'salary': 1000, 'designation': 'programmer'},
+... {'name': 'Akbar', 'salary': 1000, 'designation': 'clerk'},
+... {'age': 32, 'salary': 1000, 'designation': 'tester', 'name': 'Anthony'}
+... ])
+ReferenceError: any is not defined
+demodb> db.insertMany([
+... db.insert < any([ { 'name': 'Amar', 'age': 40, 'salary': 1000, 'designation': 'programmer' }, { 'name': 'Akbar', 'salary': 1000, 'designation': 'clerk' }, { 'age': 32, 'salary': 1000, 'designation': 'tester', 'name': 'Anthony' }] )
+demodb> db.insertMany([ { 'name': 'Amar', 'age': 40, 'salary': 1000, 'designation': 'programmer' }, { 'name': 'Akbar', 'salary': 1000, 'designation': 'clerk' }, { 'age': 32, 'salary': 1000, 'designation': 'tester', 'name': 'Anthony' }] )
+TypeError: db.insertMany is not a function
+demodb> db.Employee.insertMany([{ 'name': 'Amar', 'age': 40, 'salary': 1000, 'designation': 'programmer' }, { 'name': 'Akbar', 'salary': 1000, 'designation': 'clerk' }, { 'age': 32, 'salary': 1000, 'designation': 'tester', 'name': 'Anthony' }])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('679c9547546ae51ff4cb0ce6'),
+    '1': ObjectId('679c9547546ae51ff4cb0ce7'),
+    '2': ObjectId('679c9547546ae51ff4cb0ce8')
+  }
+}
+demodb> db.Employee.find()
+[
+  {
+    _id: ObjectId('679c93b6546ae51ff4cb0ce2'),
+    name: 'Shoyab',
+    age: 22
+  },
+  {
+    _id: ObjectId('679c93f5546ae51ff4cb0ce3'),
+    name: 'Sanjana',
+    age: 22
+  },
+  {
+    _id: ObjectId('679c9459546ae51ff4cb0ce4'),
+    name: 'Kaif',
+    age: 21,
+    salary: 100,
+    designation: 'clerk'
+  },
+  {
+    _id: ObjectId('679c9490546ae51ff4cb0ce5'),
+    name: 'Bhavandar Bihari',
+    age: 32,
+    salary: 1000,
+    designation: 'tester'
+  },
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce6'),
+    name: 'Amar',
+    age: 40,
+    salary: 1000,
+    designation: 'programmer'
+  },
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce7'),
+    name: 'Akbar',
+    salary: 1000,
+    designation: 'clerk'
+  },
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce8'),
+    age: 32,
+    salary: 1000,
+    designation: 'tester',
+    name: 'Anthony'
+  }
+]
+demodb> show dbs
+admin   40.00 KiB
+config  92.00 KiB
+demodb  72.00 KiB
+local   40.00 KiB
+demodb> show collections
+Employee
+demodb> db.Employee.find({'designation': 'tester'})
+[
+  {
+    _id: ObjectId('679c9490546ae51ff4cb0ce5'),
+    name: 'Bhavandar Bihari',
+    age: 32,
+    salary: 1000,
+    designation: 'tester'
+  },
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce8'),
+    age: 32,
+    salary: 1000,
+    designation: 'tester',
+    name: 'Anthony'
+  }
+]
+demodb> db.Employee.find({'designation': 'manager'})
+
+demodb> db.Employee.find({'designation': 'clerk'})
+[
+  {
+    _id: ObjectId('679c9459546ae51ff4cb0ce4'),
+    name: 'Kaif',
+    age: 21,
+    salary: 100,
+    designation: 'clerk'
+  },
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce7'),
+    name: 'Akbar',
+    salary: 1000,
+    designation: 'clerk'
+  }
+]
+demodb> db.Employee.find({'designation': 'clerk', 'age':22})
+
+demodb> db.Employee.find({'designation': 'clerk', 'age':21})
+[
+  {
+    _id: ObjectId('679c9459546ae51ff4cb0ce4'),
+    name: 'Kaif',
+    age: 21,
+    salary: 100,
+    designation: 'clerk'
+  }
+]
+demodb> db.Employee.find({'designation': 'clerk', 'age': {&gt: 20}})
+Uncaught:
+SyntaxError: Unexpected token (1:50)
+
+> 1 | db.Employee.find({'designation': 'clerk', 'age': {&gt: 20}})
+    |                                                   ^
+  2 |
+
+demodb> db.Employee.find({'designation': 'clerk', 'age': {'&gt': 20}})
+
+demodb> db.Employee.find({'designation': 'clerk', 'age': {$gt: 20}})
+[
+  {
+    _id: ObjectId('679c9459546ae51ff4cb0ce4'),
+    name: 'Kaif',
+    age: 21,
+    salary: 100,
+    designation: 'clerk'
+  }
+]
+demodb> db.Employee.find($or: [{'age': {$lt: 30}}, {'designation': 'clerk'}])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:20)
+
+> 1 | db.Employee.find($or: [{'age': {$lt: 30}}, {'designation': 'clerk'}])
+    |                     ^
+  2 |
+
+demodb> db.Employee.find({$or: [{'age': {$lt: 30}}, {'designation': 'clerk'}]})
+[
+  {
+    _id: ObjectId('679c93b6546ae51ff4cb0ce2'),
+    name: 'Shoyab',
+    age: 22
+  },
+  {
+    _id: ObjectId('679c93f5546ae51ff4cb0ce3'),
+    name: 'Sanjana',
+    age: 22
+  },
+  {
+    _id: ObjectId('679c9459546ae51ff4cb0ce4'),
+    name: 'Kaif',
+    age: 21,
+    salary: 100,
+    designation: 'clerk'
+  },
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce7'),
+    name: 'Akbar',
+    salary: 1000,
+    designation: 'clerk'
+  }
+]
+demodb> db.Employee.update({'name': 'Sanjana'}, {$set: {'designation': 'Manager', 'salary': 10000000}})
+DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+demodb> db.Employee.find({$or: [{'age': {$lt: 30}}, {'designation': 'clerk'}]})
+[
+  {
+    _id: ObjectId('679c93b6546ae51ff4cb0ce2'),
+    name: 'Shoyab',
+    age: 22
+  },
+  {
+    _id: ObjectId('679c93f5546ae51ff4cb0ce3'),
+    name: 'Sanjana',
+    age: 22,
+    designation: 'Manager',
+    salary: 10000000
+  },
+  {
+    _id: ObjectId('679c9459546ae51ff4cb0ce4'),
+    name: 'Kaif',
+    age: 21,
+    salary: 100,
+    designation: 'clerk'
+  },
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce7'),
+    name: 'Akbar',
+    salary: 1000,
+    designation: 'clerk'
+  }
+]
+demodb> db.Employee.find({}, {'name': 1, 'age': 1, '_id': 0})
+[
+  { name: 'Shoyab', age: 22 },
+  { name: 'Sanjana', age: 22 },
+  { name: 'Kaif', age: 21 },
+  { name: 'Bhavandar Bihari', age: 32 },
+  { name: 'Amar', age: 40 },
+  { name: 'Akbar' },
+  { age: 32, name: 'Anthony' }
+]
+demodb> db.Employee.find({}, {'name': 1, 'age': 1})
+[
+  {
+    _id: ObjectId('679c93b6546ae51ff4cb0ce2'),
+    name: 'Shoyab',
+    age: 22
+  },
+  {
+    _id: ObjectId('679c93f5546ae51ff4cb0ce3'),
+    name: 'Sanjana',
+    age: 22
+  },
+  { _id: ObjectId('679c9459546ae51ff4cb0ce4'), name: 'Kaif', age: 21 },
+  {
+    _id: ObjectId('679c9490546ae51ff4cb0ce5'),
+    name: 'Bhavandar Bihari',
+    age: 32
+  },
+  { _id: ObjectId('679c9547546ae51ff4cb0ce6'), name: 'Amar', age: 40 },
+  { _id: ObjectId('679c9547546ae51ff4cb0ce7'), name: 'Akbar' },
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce8'),
+    age: 32,
+    name: 'Anthony'
+  }
+]
+demodb> db.Employee.find({}, {'name': 1, 'age': 1, '_id': 0})
+[
+  { name: 'Shoyab', age: 22 },
+  { name: 'Sanjana', age: 22 },
+  { name: 'Kaif', age: 21 },
+  { name: 'Bhavandar Bihari', age: 32 },
+  { name: 'Amar', age: 40 },
+  { name: 'Akbar' },
+  { age: 32, name: 'Anthony' }
+]
+demodb> db.Employee.find({}, {'_id': 0})
+[
+  { name: 'Shoyab', age: 22 },
+  {
+    name: 'Sanjana',
+    age: 22,
+    designation: 'Manager',
+    salary: 10000000
+  },
+  { name: 'Kaif', age: 21, salary: 100, designation: 'clerk' },
+  {
+    name: 'Bhavandar Bihari',
+    age: 32,
+    salary: 1000,
+    designation: 'tester'
+  },
+  { name: 'Amar', age: 40, salary: 1000, designation: 'programmer' },
+  { name: 'Akbar', salary: 1000, designation: 'clerk' },
+  { age: 32, salary: 1000, designation: 'tester', name: 'Anthony' }
+]
+demodb> db.Employee.find({}, {'_id': 0}).limit(5)
+[
+  { name: 'Shoyab', age: 22 },
+  {
+    name: 'Sanjana',
+    age: 22,
+    designation: 'Manager',
+    salary: 10000000
+  },
+  { name: 'Kaif', age: 21, salary: 100, designation: 'clerk' },
+  {
+    name: 'Bhavandar Bihari',
+    age: 32,
+    salary: 1000,
+    designation: 'tester'
+  },
+  { name: 'Amar', age: 40, salary: 1000, designation: 'programmer' }
+]
+demodb> db.Employee.find({}, {'_id': 0}).limit(5).skip(3)
+[
+  {
+    name: 'Bhavandar Bihari',
+    age: 32,
+    salary: 1000,
+    designation: 'tester'
+  },
+  { name: 'Amar', age: 40, salary: 1000, designation: 'programmer' },
+  { name: 'Akbar', salary: 1000, designation: 'clerk' },
+  { age: 32, salary: 1000, designation: 'tester', name: 'Anthony' }
+]
+demodb> db.Employee.find({}).sort(1)
+MongoInvalidArgumentError: Invalid sort format: 1 Sort must be a valid object
+demodb> db.Employee.find({}).sort({'name': 1})
+[
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce7'),
+    name: 'Akbar',
+    salary: 1000,
+    designation: 'clerk'
+  },
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce6'),
+    name: 'Amar',
+    age: 40,
+    salary: 1000,
+    designation: 'programmer'
+  },
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce8'),
+    age: 32,
+    salary: 1000,
+    designation: 'tester',
+    name: 'Anthony'
+  },
+  {
+    _id: ObjectId('679c9490546ae51ff4cb0ce5'),
+    name: 'Bhavandar Bihari',
+    age: 32,
+    salary: 1000,
+    designation: 'tester'
+  },
+  {
+    _id: ObjectId('679c9459546ae51ff4cb0ce4'),
+    name: 'Kaif',
+    age: 21,
+    salary: 100,
+    designation: 'clerk'
+  },
+  {
+    _id: ObjectId('679c93f5546ae51ff4cb0ce3'),
+    name: 'Sanjana',
+    age: 22,
+    designation: 'Manager',
+    salary: 10000000
+  },
+  {
+    _id: ObjectId('679c93b6546ae51ff4cb0ce2'),
+    name: 'Shoyab',
+    age: 22
+  }
+]
+demodb> db.Employee.find({}).sort({'name': -1})
+[
+  {
+    _id: ObjectId('679c93b6546ae51ff4cb0ce2'),
+    name: 'Shoyab',
+    age: 22
+  },
+  {
+    _id: ObjectId('679c93f5546ae51ff4cb0ce3'),
+    name: 'Sanjana',
+    age: 22,
+    designation: 'Manager',
+    salary: 10000000
+  },
+  {
+    _id: ObjectId('679c9459546ae51ff4cb0ce4'),
+    name: 'Kaif',
+    age: 21,
+    salary: 100,
+    designation: 'clerk'
+  },
+  {
+    _id: ObjectId('679c9490546ae51ff4cb0ce5'),
+    name: 'Bhavandar Bihari',
+    age: 32,
+    salary: 1000,
+    designation: 'tester'
+  },
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce8'),
+    age: 32,
+    salary: 1000,
+    designation: 'tester',
+    name: 'Anthony'
+  },
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce6'),
+    name: 'Amar',
+    age: 40,
+    salary: 1000,
+    designation: 'programmer'
+  },
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce7'),
+    name: 'Akbar',
+    salary: 1000,
+    designation: 'clerk'
+  }
+]
+demodb> db.Employee.find({}).sort({'name': 1, 'designation': 1})
+[
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce7'),
+    name: 'Akbar',
+    salary: 1000,
+    designation: 'clerk'
+  },
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce6'),
+    name: 'Amar',
+    age: 40,
+    salary: 1000,
+    designation: 'programmer'
+  },
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce8'),
+    age: 32,
+    salary: 1000,
+    designation: 'tester',
+    name: 'Anthony'
+  },
+  {
+    _id: ObjectId('679c9490546ae51ff4cb0ce5'),
+    name: 'Bhavandar Bihari',
+    age: 32,
+    salary: 1000,
+    designation: 'tester'
+  },
+  {
+    _id: ObjectId('679c9459546ae51ff4cb0ce4'),
+    name: 'Kaif',
+    age: 21,
+    salary: 100,
+    designation: 'clerk'
+  },
+  {
+    _id: ObjectId('679c93f5546ae51ff4cb0ce3'),
+    name: 'Sanjana',
+    age: 22,
+    designation: 'Manager',
+    salary: 10000000
+  },
+  {
+    _id: ObjectId('679c93b6546ae51ff4cb0ce2'),
+    name: 'Shoyab',
+    age: 22
+  }
+]
+demodb> db.Employee.find({}).sort({'name': 1, 'designation': -1})
+[
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce7'),
+    name: 'Akbar',
+    salary: 1000,
+    designation: 'clerk'
+  },
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce6'),
+    name: 'Amar',
+    age: 40,
+    salary: 1000,
+    designation: 'programmer'
+  },
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce8'),
+    age: 32,
+    salary: 1000,
+    designation: 'tester',
+    name: 'Anthony'
+  },
+  {
+    _id: ObjectId('679c9490546ae51ff4cb0ce5'),
+    name: 'Bhavandar Bihari',
+    age: 32,
+    salary: 1000,
+    designation: 'tester'
+  },
+  {
+    _id: ObjectId('679c9459546ae51ff4cb0ce4'),
+    name: 'Kaif',
+    age: 21,
+    salary: 100,
+    designation: 'clerk'
+  },
+  {
+    _id: ObjectId('679c93f5546ae51ff4cb0ce3'),
+    name: 'Sanjana',
+    age: 22,
+    designation: 'Manager',
+    salary: 10000000
+  },
+  {
+    _id: ObjectId('679c93b6546ae51ff4cb0ce2'),
+    name: 'Shoyab',
+    age: 22
+  }
+]
+demodb> db.Employee.find({}).sort({'designation': 1, 'name': 1})
+[
+  {
+    _id: ObjectId('679c93b6546ae51ff4cb0ce2'),
+    name: 'Shoyab',
+    age: 22
+  },
+  {
+    _id: ObjectId('679c93f5546ae51ff4cb0ce3'),
+    name: 'Sanjana',
+    age: 22,
+    designation: 'Manager',
+    salary: 10000000
+  },
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce7'),
+    name: 'Akbar',
+    salary: 1000,
+    designation: 'clerk'
+  },
+  {
+    _id: ObjectId('679c9459546ae51ff4cb0ce4'),
+    name: 'Kaif',
+    age: 21,
+    salary: 100,
+    designation: 'clerk'
+  },
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce6'),
+    name: 'Amar',
+    age: 40,
+    salary: 1000,
+    designation: 'programmer'
+  },
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce8'),
+    age: 32,
+    salary: 1000,
+    designation: 'tester',
+    name: 'Anthony'
+  },
+  {
+    _id: ObjectId('679c9490546ae51ff4cb0ce5'),
+    name: 'Bhavandar Bihari',
+    age: 32,
+    salary: 1000,
+    designation: 'tester'
+  }
+]
+demodb> db.Employee.deleteMany({'salary': 100})
+{ acknowledged: true, deletedCount: 1 }
+demodb> db.Employee.find({}).sort({'designation': 1, 'name': 1})
+[
+  {
+    _id: ObjectId('679c93b6546ae51ff4cb0ce2'),
+    name: 'Shoyab',
+    age: 22
+  },
+  {
+    _id: ObjectId('679c93f5546ae51ff4cb0ce3'),
+    name: 'Sanjana',
+    age: 22,
+    designation: 'Manager',
+    salary: 10000000
+  },
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce7'),
+    name: 'Akbar',
+    salary: 1000,
+    designation: 'clerk'
+  },
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce6'),
+    name: 'Amar',
+    age: 40,
+    salary: 1000,
+    designation: 'programmer'
+  },
+  {
+    _id: ObjectId('679c9547546ae51ff4cb0ce8'),
+    age: 32,
+    salary: 1000,
+    designation: 'tester',
+    name: 'Anthony'
+  },
+  {
+    _id: ObjectId('679c9490546ae51ff4cb0ce5'),
+    name: 'Bhavandar Bihari',
+    age: 32,
+    salary: 1000,
+    designation: 'tester'
+  }
+]
+demodb> db.Employee.findOneAndDelete({'age': 32})
+{
+  _id: ObjectId('679c9490546ae51ff4cb0ce5'),
+  name: 'Bhavandar Bihari',
+  age: 32,
+  salary: 1000,
+  designation: 'tester'
+}
+demodb> db.Employee.drop()
+true
+demodb> db.Employee.find()
+
+demodb> show collections
+
+demodb> show dbs
+admin    40.00 KiB
+config  108.00 KiB
+local    40.00 KiB
+demodb> db.dropDatabase()
+{ ok: 1, dropped: 'demodb' }
+demodb> db.dropDatabase()
+{ ok: 1, dropped: 'demodb' }
+demodb> use local
+switched to db local
+local> show dbs
+admin    40.00 KiB
+config  108.00 KiB
+local    40.00 KiB
+local> use demodb
+switched to db demodb
+demodb> db.Employee.insertMany([{ 'name': 'Amar', 'age': 40, 'salary': 1000, 'designation': 'programmer' }, { 'name': 'Akbar', 'salary': 1000, 'designation': 'clerk' }, { 'age': 32, 'salary': 1000, 'designation': 'tester', 'name': 'Anthony' }])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('679c9e7c546ae51ff4cb0ce9'),
+    '1': ObjectId('679c9e7c546ae51ff4cb0cea'),
+    '2': ObjectId('679c9e7c546ae51ff4cb0ceb')
+  }
+}
+demodb> db.Employee.insertOne({'name': 'Bhavandar Bihari', 'age': 32, 'salary': 1000, 'designation': 'tester'})
+{
+  acknowledged: true,
+  insertedId: ObjectId('679c9e87546ae51ff4cb0cec')
+}
+demodb> db.Employee.insertOne({'name': 'Kaif', 'age': 21, 'salary': 100, 'designation': 'clerk'})
+{
+  acknowledged: true,
+  insertedId: ObjectId('679c9e8e546ae51ff4cb0ced')
+}
+demodb>
