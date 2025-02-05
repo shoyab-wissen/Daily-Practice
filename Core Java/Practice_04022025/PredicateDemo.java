@@ -19,7 +19,7 @@ public class PredicateDemo {
         evenNumbers(arr);
         oddNumbers(arr);
         List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-        list.forEach((Integer arg) -> (p1.test(arg)) ? System.out.println(arg) : null);
+        list.forEach((Integer arg) -> System.out.println(arg));
     }
 
     public static void process(int[] arr, Predicate<Integer> p1) {
