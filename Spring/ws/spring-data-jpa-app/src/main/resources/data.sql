@@ -1,0 +1,6 @@
+insert into emp values(22, 1, 99999999.99, 'Developer', 'Shoyab')
+insert into emp values(22, 2, 99999999.99, 'Developer', 'Sanjana')
+insert into emp values(21, 3, 99999.99, 'Tester', 'Kaif')
+insert into emp values(21, 4, 9999.99, 'Clerk', 'Omkar')
+insert into emp values(21, 5, 9999.99, 'Tester', 'Sanchit')
+insert into emp values(21, 6, 99999.99, 'Tester', 'Sarvesh')
