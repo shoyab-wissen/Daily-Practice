@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @media screen and (max-width: 700px) {
+            body{
+                background-color: blue;
+            }
+            h1 {
+                font-size: 36px;
+            }
+            h2 {
+                font-size: 24px;
+            }
+        }
+        @media screen and (max-width: 1000px) {
+            body{
+                background-color: green;
+            }
+            h1 {
+                font-size: 48px;
+            }
+            h2 {
+                font-size: 36px;
+            }
+        }
+        .animate{
+            width: 100px;
+            background-color: purple;
+            color: white;
+            margin: 20px;
+            padding: 20px;
+            height: 100px;
+            animation: example 5s both;
+        }
+
+        @keyframes example{
+            from{
+                background-color: purple;
+                visibility: visible;
+            }
+            to{
+                background-color: white;
+                visibility: hidden;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>This is to dmeonstrate media query</h1>
+    <hr>
+    <h2>Some Text added here Some Text added here Some Text added here Some Text added hereSome Text added here Some Text added here Some Text added hereSome Text added here Some Text added hereSome Text added here Some Text added here Some Text added here Some Text added here Some Text added here Some Text added here Some Text added here Some Text added here Some Text added here</h2>
+    <hr>
+    <div class="animate">
+        This content will change automatically 
+    </div>
+    <hr>
+</body>
+</html>

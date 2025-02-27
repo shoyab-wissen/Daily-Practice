@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <style>
+            p.one{
+                font-size: 20px;
+                color: red;
+            }
+            p.two{
+                font-size: 18px;
+                color: blue;
+            }
+            .three{
+                color: purple;
+            }
+            #four{
+                font-size: 16px;
+                color: green;
+            }
+            span{
+                color: brown;
+            }
+
+            span > span{
+                color: orange;
+                font-size: 14px;
+            }
+            h1::before{
+                content: "Welcome Mr/Mrs ";
+                color: red;
+            }
+            h1::after{
+                content: ", Have a great day";
+                color: blue;
+            }
+            h1{
+                color: blueviolet;
+            }
+        </style>
+    </head>
+    <body>
+        <p class="one">This is 1st paragragh</p>
+        <p>This is 2nd paragragh</p>
+        <p class="two">This is 3rd paragragh</p>
+        <p id="four">This is 4th paragragh</p>
+        <p class="three">This is 5th paragragh</p>
+        <div class="three">This is a div tag</div>
+        <span>This is span 1 <span>Within span</span></span><br>
+        <span>This is span 2</span><br>
+        <span>This is span 3</span><br>
+        <span>This is span 4</span><br>
+        <h1>Reddy</h1>
+        <h1>Singh</h1>
+        <h1>Khan</h1>
+    </body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div.box{
+            width: 150px;
+            height: 150px;
+            background-color: yellow;
+            border: 10px red solid;
+            padding: 40px;
+            margin: 50px;
+        }
+        .my-flex-container{
+            display: flex;
+            background-color: yellow;
+        }
+
+        .my-flex-container > div{
+            background-color: red;
+            padding: 20px;
+            margin: 10px;
+            color: white;
+            
+        }
+        .my-grid-container{
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            width: 300px;
+        }
+
+        .my-grid-container > div{
+            background-color: red;
+            padding: 20px;
+            margin: 10px;
+            color: white;
+            border-radius: 10px;
+        }
+        .inp{
+            background-color: white;
+            /* padding: 20px; */
+            width: 300px;
+            border: 1px black solid;
+            /* margin: 10px; */
+        }
+        .inp > input{
+            width: 92%;
+            height: 100%;
+            padding: 10px;
+            text-align: center;
+        }
+        .calc{
+            background-color: yellow;
+            width: fit-content;
+            padding: 20px;
+            font-size: xx-large;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Css Box Model</h1>
+    <hr>
+    <div class="box">This is to hold the content with css box model</div>
+    <hr>
+    <h1>Flex Box Model</h1>
+    <hr>
+    <div class="my-flex-container">
+        <div>This is to hold the content with css box model</div>
+        <div>This is to hold the content with css box model</div>
+        <div>This is to hold the content with css box model</div>
+        <div>This is to hold the content with css box model</div>
+        <div>This is to hold the content with css box model</div>
+        <div>This is to hold the content with css box model</div>
+        <div>This is to hold the content with css box model</div>
+    </div>
+    <hr>
+    <h1>Grid Box Model</h1>
+    <hr>
+   <div class="calc">
+    <p>Calculator</p>
+    <div class="inp">
+        <input type="text" name="" id="">
+    </div>
+    <div class="my-grid-container">
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>/</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>*</div>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>-</div>
+        <div>.</div>
+        <div>0</div>
+        <div>=</div>
+        <div>+</div>
+    </div>
+   </div>
+</body>
+</html>
