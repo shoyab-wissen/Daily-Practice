@@ -1,0 +1,25 @@
+<h2>Attribute Directivies</h2>
+
+<h3>
+  <div class="brdr bg">
+    JUST FOR DEMO PURPOSE CREATING THIS DIV BLOCK BRDR BG
+  </div>
+  <div [ngClass]="{ brdr: isBordered, bg: isHighlighted }">
+    JUST FOR DEMO PURPOSE CREATING THIS DIV BLOCK FOR NG CLASS DEMO
+  </div>
+  <button type="button" (click)="toggleBorder()">Border</button>
+  <button type="button" (click)="toggleHighlight()">Background</button>
+</h3>
+
+<h3>
+  <div
+    [ngStyle]="{
+      backgroundColor: color,
+      border: isBordered ? '1px solid black' : 'none'
+    }"
+  >
+    JUST FOR DEMO PURPOSE CREATING THIS DIV BLOCK FOR NG STYLE DEMO
+  </div>
+  <input type="color" #mc (cuechange)="changeColor(mc.value)" />
+  <button type="button" (click)="changeColor(mc.value)">Change Color</button>
+</h3>

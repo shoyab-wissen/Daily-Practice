@@ -1,0 +1,24 @@
+<h2>Inbuilt Pipes Demo</h2>
+<hr />
+<h3>
+  {{ str | uppercase }} <br />
+  {{ str | lowercase }} <br />
+  {{ str | titlecase }} <br />
+  {{ str | slice : 0 : 5 }} <br />
+  {{ str | slice : -5 }} <br />
+  <hr />
+  {{ amt }}
+  {{ amt | currency }} <br />
+  {{ amt | currency : "INR" }} <br />
+  {{ amt | currency : "EUR" }} <br />
+  {{ amt | currency : "JPY" }} <br />
+  {{ amt | currency : "SAR" }} <br />
+  <hr />
+  {{ dt }} <br />
+  {{ dt | date : "fullDate" | lowercase }} <br />
+  {{ dt | date : "shortDate" }} <br />
+  {{ dt | date : "mediumTime" }} <br />
+  {{ dt | date : "longTime" }} <br />
+  {{ dt | date : "yyyy-MM-dd HH:mm:ss" }} <br />
+</h3>
+<hr />

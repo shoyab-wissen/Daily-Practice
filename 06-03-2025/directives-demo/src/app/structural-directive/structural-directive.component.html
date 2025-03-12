@@ -1,0 +1,42 @@
+<h2>Structural Directices Demo</h2>
+
+<div *ngIf="show">
+  <p>This is a structural directive example.</p>
+</div>
+
+<hr />
+
+<div *ngIf="show; else do_this"></div>
+
+<ng-template #do_this>
+  <p>This is the alternative content.</p>
+</ng-template>
+
+<hr />
+
+<div *ngIf="show; then do_that; else do_other"></div>
+
+<ng-template #do_that>
+  <p>This is the content for thengIf directive.</p>
+</ng-template>
+
+<ng-template #do_other>
+  <p>This is the alternative content for the elseIf directive.</p>
+</ng-template>
+
+<button (click)="toggleShow()">Toggle Visibility</button>
+
+<hr />
+
+<div class="box">
+  <div [ngSwitch]="brightness">
+    <div class="data" *ngSwitchCase="1">👨🏻</div>
+    <div class="data" *ngSwitchCase="2">👨🏼</div>
+    <div class="data" *ngSwitchCase="3">👨🏽</div>
+    <div class="data" *ngSwitchCase="4">👨🏾</div>
+    <div class="data" *ngSwitchCase="5">👨🏿</div>
+    <div class="data" *ngSwitchDefault>👨</div>
+  </div>
+</div>
+
+<input type="range" min="0" max="5" [(ngModel)]="brightness" />

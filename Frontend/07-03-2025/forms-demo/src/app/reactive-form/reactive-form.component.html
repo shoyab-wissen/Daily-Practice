@@ -1,0 +1,14 @@
+<h2>Reactive Forms</h2>
+
+<form [formGroup]="employeeForm" (ngSubmit)="abc(employeeForm)">
+  <input type="text" name="name" id="name" formControlName="name" />
+  <input type="text" name="age" id="age" formControlName="age" />
+  <input type="text" name="salary" id="salary" formControlName="salary" />
+  <input
+    type="text"
+    name="designation"
+    id="designation"
+    formControlName="designation"
+  />
+  <button type="submit">Submit</button>
+</form>

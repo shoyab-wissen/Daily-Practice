@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function closePage() {
+            var flag = window.confirm("Do you want to close the page?");
+            if (flag) {
+                window.close();
+            } else {
+                alert("The page will not be closed");
+            }
+        }
+
+        function greetUser() {
+            var name = prompt("Please enter your name:");
+            document.write("Hello, " + name + "! Welcome to the website!");
+        }
+    </script>
+</head>
+<body>
+    <h1>Browser Object</h1>
+    <hr>
+    <h2>Window Object</h2>
+    <script>
+        document.write("window is the root object")
+    </script>
+    <input type="button" value="Close the page" onclick="closePage()">
+    <input type="button" value="Greet" onclick="greetUser()">
+    <br>
+    <hr>
+    <h2>Location Object</h2>
+    <script>
+        document.write("location.protocol = " + location.protocol)
+        document.write("<br>location.host = " + location.host)
+        document.write("<br>location.pathname = " + location.pathname)
+        document.write("<br>location.search = " + location.search)
+        // location.assign("abc.html")
+        // location.href = "abc.html"
+    </script>
+    <hr>
+    <h2>History Object</h2>
+    <script>
+        document.write("History object allows us to manipulate the browser's history")
+        // history.back()
+        
+    </script>
+    <hr>
+    <h2>Navigator Object</h2>
+    <script>
+        document.write("navigator object provides information about the browser")
+        document.write("<br>navigator.appName = " + navigator.appName)
+        document.write("<br>navigator.appVersion = " + navigator.appVersion)
+        document.write("<br>navigator.language = " + navigator.language)
+        document.write("<br>navigator.userAgent = " + navigator.userAgent)
+        document.write("<br>navigator.appCodeName = " + navigator.appCodeName)
+        // navigator.geolocation.getCurrentPosition(successCallback, errorCallback)
+
+    </script>
+    <hr>
+    <h2>Screen Object</h2>
+    <script>
+        document.write("screen object provides information about the user's screen")
+        document.write("<br>screen.width = " + screen.width)
+        document.write("<br>screen.height = " + screen.height)
+        document.write("<br>screen.colorDepth = " + screen.colorDepth)
+        
+    </script>
+    <hr>
+    <h3>Thank You</h3>
+</body>
+</html>
